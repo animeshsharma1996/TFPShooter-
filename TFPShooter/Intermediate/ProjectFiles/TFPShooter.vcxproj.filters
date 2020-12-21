@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\TFPShooter.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{D40FB867-E650-497F-BA5D-ABEF23C6B56F}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\TFPShooter.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\TFPShooterEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{D9CBCE86-319B-481F-B0CE-9111EBA385AB}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\TFPShooter">
+      <UniqueIdentifier>{44160FDA-9D06-4AE1-BC22-253F767C0109}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\TFPShooter\TFPShooter.Build.cs">
+      <Filter>Source\TFPShooter</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\TFPShooter\TFPShooter.cpp">
+      <Filter>Source\TFPShooter</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TFPShooter\TFPShooter.h">
+      <Filter>Source\TFPShooter</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TFPShooter\TFPShooterCharacter.cpp">
+      <Filter>Source\TFPShooter</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TFPShooter\TFPShooterCharacter.h">
+      <Filter>Source\TFPShooter</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TFPShooter\TFPShooterGameMode.cpp">
+      <Filter>Source\TFPShooter</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TFPShooter\TFPShooterGameMode.h">
+      <Filter>Source\TFPShooter</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
