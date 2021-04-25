@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\TFPShooter.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{D40FB867-E650-497F-BA5D-ABEF23C6B56F}</UniqueIdentifier>
+      <UniqueIdentifier>{642C59AB-6F05-4AA9-9636-3C342853CA02}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\TFPShooter.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{D9CBCE86-319B-481F-B0CE-9111EBA385AB}</UniqueIdentifier>
+      <UniqueIdentifier>{2700F52D-AA1A-480A-81FD-0323855A6F27}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\TFPShooter">
-      <UniqueIdentifier>{44160FDA-9D06-4AE1-BC22-253F767C0109}</UniqueIdentifier>
+      <UniqueIdentifier>{A7473C3E-7C88-4F96-846D-DF0DDD81C489}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\TFPShooter\TFPShooter.Build.cs">
       <Filter>Source\TFPShooter</Filter>

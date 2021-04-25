@@ -2,12 +2,12 @@
 	"Targets": [
 		{
 			"Name": "TFPShooter",
-			"Path": "C:\\Projects\\Unreal Engine\\TPPFPPGame\\TFPShooter\\Source\\TFPShooter.Target.cs",
+			"Path": "E:\\Projects\\Unreal Engine\\TPPFPPGame\\TFPShooter-\\TFPShooter\\Source\\TFPShooter.Target.cs",
 			"Type": "Game"
 		},
 		{
 			"Name": "TFPShooterEditor",
-			"Path": "C:\\Projects\\Unreal Engine\\TPPFPPGame\\TFPShooter\\Source\\TFPShooterEditor.Target.cs",
+			"Path": "E:\\Projects\\Unreal Engine\\TPPFPPGame\\TFPShooter-\\TFPShooter\\Source\\TFPShooterEditor.Target.cs",
 			"Type": "Editor"
 		}
 	]

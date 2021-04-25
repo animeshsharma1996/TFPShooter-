@@ -1,4 +1,4 @@
-// PCH for C:\Unreal Engine\UE_4.26\Engine\Source\Runtime\Engine\Public\EngineSharedPCH.h
+// PCH for E:\Unreal Engine\UE 4\UE_4.26\Engine\Source\Runtime\Engine\Public\EngineSharedPCH.h
 #define IS_PROGRAM 0
 #define UE_EDITOR 1
 #define ENABLE_PGO_PROFILE 0
@@ -90,6 +90,7 @@
 #define SLATE_API DLLIMPORT
 #define WITH_UNREALPNG 1
 #define WITH_UNREALJPEG 1
+#define WITH_LIBJPEGTURBO 1
 #define WITH_UNREALEXR 1
 #define IMAGEWRAPPER_API DLLIMPORT
 #define MESSAGING_API DLLIMPORT
@@ -284,4 +285,4 @@
 #define WITH_CUSTOM_SQ_STRUCTURE 0
 #define WITH_IMMEDIATE_PHYSX 0
 #define CLOTHINGSYSTEMRUNTIMEINTERFACE_API DLLIMPORT
-#include "C:/Unreal Engine/UE_4.26/Engine/Source/Runtime/Engine/Public/EngineSharedPCH.h"
+#include "E:/Unreal Engine/UE 4/UE_4.26/Engine/Source/Runtime/Engine/Public/EngineSharedPCH.h"
