@@ -31,8 +31,8 @@
 /wd4244
 /wd4838
 /I .
-/I "C:\Projects\Unreal Engine\TPPFPPGame\TFPShooter\Intermediate\Build\Win64\UE4Editor\Inc\TFPShooter"
-/I "C:\Projects\Unreal Engine\TPPFPPGame\TFPShooter\Source"
+/I "E:\Projects\Unreal Engine\TPPFPPGame\TFPShooter-\TFPShooter\Intermediate\Build\Win64\UE4Editor\Inc\TFPShooter"
+/I "E:\Projects\Unreal Engine\TPPFPPGame\TFPShooter-\TFPShooter\Source"
 /I Runtime
 /I Runtime\TraceLog\Public
 /I Runtime\Core\Public
@@ -265,12 +265,12 @@
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"
-/FI"C:\Projects\Unreal Engine\TPPFPPGame\TFPShooter\Intermediate\Build\Win64\TFPShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Yu"C:\Projects\Unreal Engine\TPPFPPGame\TFPShooter\Intermediate\Build\Win64\TFPShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Fp"C:\Projects\Unreal Engine\TPPFPPGame\TFPShooter\Intermediate\Build\Win64\TFPShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-"C:\Projects\Unreal Engine\TPPFPPGame\TFPShooter\Source\TFPShooter\TFPShooter.cpp"
-/FI"C:\Projects\Unreal Engine\TPPFPPGame\TFPShooter\Intermediate\Build\Win64\UE4Editor\Development\TFPShooter\Definitions.TFPShooter.h"
-/Fo"C:\Projects\Unreal Engine\TPPFPPGame\TFPShooter\Intermediate\Build\Win64\UE4Editor\Development\TFPShooter\TFPShooter.cpp.obj"
+/FI"E:\Projects\Unreal Engine\TPPFPPGame\TFPShooter-\TFPShooter\Intermediate\Build\Win64\TFPShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Yu"E:\Projects\Unreal Engine\TPPFPPGame\TFPShooter-\TFPShooter\Intermediate\Build\Win64\TFPShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"E:\Projects\Unreal Engine\TPPFPPGame\TFPShooter-\TFPShooter\Intermediate\Build\Win64\TFPShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+"E:\Projects\Unreal Engine\TPPFPPGame\TFPShooter-\TFPShooter\Source\TFPShooter\TFPShooter.cpp"
+/FI"E:\Projects\Unreal Engine\TPPFPPGame\TFPShooter-\TFPShooter\Intermediate\Build\Win64\UE4Editor\Development\TFPShooter\Definitions.TFPShooter.h"
+/Fo"E:\Projects\Unreal Engine\TPPFPPGame\TFPShooter-\TFPShooter\Intermediate\Build\Win64\UE4Editor\Development\TFPShooter\TFPShooter.cpp.obj"
 /TP
 /GR-
 /W4
