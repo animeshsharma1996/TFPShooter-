@@ -11,9 +11,7 @@ class ATFPShooterGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
-public:
-	ATFPShooterGameMode();
+	public:
+		ATFPShooterGameMode();
 };
-
-
 
