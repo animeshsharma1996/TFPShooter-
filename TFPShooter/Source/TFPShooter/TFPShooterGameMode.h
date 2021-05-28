@@ -13,5 +13,7 @@ class ATFPShooterGameMode : public AGameModeBase
 
 	public:
 		ATFPShooterGameMode();
+		
+		//virtual void Tick(float DeltaSeconds) override;
 };
 
