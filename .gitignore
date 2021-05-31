@@ -72,3 +72,6 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+TFPShooter/Saved/Config/Windows/EditorPerProjectUserSettings.ini
+
+TFPShooter/Saved/Logs/TFPShooter.log
