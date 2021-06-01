@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\TFPShooter.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{642C59AB-6F05-4AA9-9636-3C342853CA02}</UniqueIdentifier>
+      <UniqueIdentifier>{BCEE672E-A68C-4313-A1BC-45A7DE75263A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\TFPShooter.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{2700F52D-AA1A-480A-81FD-0323855A6F27}</UniqueIdentifier>
+      <UniqueIdentifier>{9BEDB2F1-9BA6-4520-BDBB-EC754E4528E3}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\TFPShooter">
-      <UniqueIdentifier>{A7473C3E-7C88-4F96-846D-DF0DDD81C489}</UniqueIdentifier>
+      <UniqueIdentifier>{46BEB3B5-C6CA-4C83-9E40-C0D0F5D6C114}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\TFPShooter\TFPShooter.Build.cs">
       <Filter>Source\TFPShooter</Filter>
@@ -45,6 +45,12 @@
       <Filter>Source\TFPShooter</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\TFPShooter\TFPShooterCharacter.h">
+      <Filter>Source\TFPShooter</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TFPShooter\TFPShooterGameInstance.cpp">
+      <Filter>Source\TFPShooter</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TFPShooter\TFPShooterGameInstance.h">
       <Filter>Source\TFPShooter</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\TFPShooter\TFPShooterGameMode.cpp">
