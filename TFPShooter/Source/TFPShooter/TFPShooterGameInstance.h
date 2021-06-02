@@ -17,6 +17,7 @@ class TFPSHOOTER_API UTFPShooterGameInstance : public UGameInstance
 	GENERATED_BODY()
 	
 public :
+	UTFPShooterGameInstance();
 	USkeletalMesh* GetCharSkeletalMesh();
 	void SetCharSkeletalMesh(USkeletalMesh* _charSkeletalMesh);
 	UMaterialInterface* GetCharMaterialInstance();
