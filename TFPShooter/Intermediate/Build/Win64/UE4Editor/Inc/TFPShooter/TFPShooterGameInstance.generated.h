@@ -13,10 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define TFPSHOOTER_TFPShooterGameInstance_generated_h
 
-#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_SPARSE_DATA
-#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_RPC_WRAPPERS
-#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_RPC_WRAPPERS_NO_PURE_DECLS
-#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_INCLASS_NO_PURE_DECLS \
+#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_SPARSE_DATA
+#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_RPC_WRAPPERS
+#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_RPC_WRAPPERS_NO_PURE_DECLS
+#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUTFPShooterGameInstance(); \
 	friend struct Z_Construct_UClass_UTFPShooterGameInstance_Statics; \
@@ -25,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(UTFPShooterGameInstance)
 
 
-#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_INCLASS \
+#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_INCLASS \
 private: \
 	static void StaticRegisterNativesUTFPShooterGameInstance(); \
 	friend struct Z_Construct_UClass_UTFPShooterGameInstance_Statics; \
@@ -34,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(UTFPShooterGameInstance)
 
 
-#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_STANDARD_CONSTRUCTORS \
+#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UTFPShooterGameInstance(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UTFPShooterGameInstance) \
@@ -47,7 +47,7 @@ private: \
 public:
 
 
-#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_ENHANCED_CONSTRUCTORS \
+#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API UTFPShooterGameInstance(UTFPShooterGameInstance&&); \
@@ -58,28 +58,28 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UTFPShooterGameInstance); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UTFPShooterGameInstance)
 
 
-#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_PRIVATE_PROPERTY_OFFSET
-#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_14_PROLOG
-#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_GENERATED_BODY_LEGACY \
+#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_PRIVATE_PROPERTY_OFFSET
+#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_13_PROLOG
+#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_PRIVATE_PROPERTY_OFFSET \
-	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_SPARSE_DATA \
-	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_RPC_WRAPPERS \
-	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_INCLASS \
-	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_STANDARD_CONSTRUCTORS \
+	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_PRIVATE_PROPERTY_OFFSET \
+	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_SPARSE_DATA \
+	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_RPC_WRAPPERS \
+	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_INCLASS \
+	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_GENERATED_BODY \
+#define TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_PRIVATE_PROPERTY_OFFSET \
-	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_SPARSE_DATA \
-	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
-	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_INCLASS_NO_PURE_DECLS \
-	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_17_ENHANCED_CONSTRUCTORS \
+	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_PRIVATE_PROPERTY_OFFSET \
+	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_SPARSE_DATA \
+	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_INCLASS_NO_PURE_DECLS \
+	TFPShooter_Source_TFPShooter_TFPShooterGameInstance_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

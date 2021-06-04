@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeTFPShooter_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0xB57E7C28,
+				0x30A3E260,
 				0x1A02907A,
 				METADATA_PARAMS(nullptr, 0)
 			};

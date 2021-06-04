@@ -17,8 +17,8 @@ void EmptyLinkFunctionForGeneratedCodeTFPShooterGameInstance() {}
 	TFPSHOOTER_API UClass* Z_Construct_UClass_UTFPShooterGameInstance();
 	ENGINE_API UClass* Z_Construct_UClass_UGameInstance();
 	UPackage* Z_Construct_UPackage__Script_TFPShooter();
-	ENGINE_API UClass* Z_Construct_UClass_USkeletalMesh_NoRegister();
-	ENGINE_API UClass* Z_Construct_UClass_UMaterialInterface_NoRegister();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	TFPSHOOTER_API UClass* Z_Construct_UClass_ATFPShooterCharacter_NoRegister();
 // End Cross Module References
 	void UTFPShooterGameInstance::StaticRegisterNativesUTFPShooterGameInstance()
 	{
@@ -34,13 +34,9 @@ void EmptyLinkFunctionForGeneratedCodeTFPShooterGameInstance() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_charSkeletalMesh_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BP_SMC_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_charSkeletalMesh;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_charMaterialInstance_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_charMaterialInstance;
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_BP_SMC;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -57,22 +53,14 @@ void EmptyLinkFunctionForGeneratedCodeTFPShooterGameInstance() {}
 	};
 #endif
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_charSkeletalMesh_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_BP_SMC_MetaData[] = {
 		{ "Category", "TFPShooterGameInstance" },
 		{ "ModuleRelativePath", "TFPShooterGameInstance.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_charSkeletalMesh = { "charSkeletalMesh", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, charSkeletalMesh), Z_Construct_UClass_USkeletalMesh_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_charSkeletalMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_charSkeletalMesh_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_charMaterialInstance_MetaData[] = {
-		{ "Category", "TFPShooterGameInstance" },
-		{ "ModuleRelativePath", "TFPShooterGameInstance.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_charMaterialInstance = { "charMaterialInstance", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, charMaterialInstance), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_charMaterialInstance_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_charMaterialInstance_MetaData)) };
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_BP_SMC = { "BP_SMC", nullptr, (EPropertyFlags)0x0014000000000005, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, BP_SMC), Z_Construct_UClass_ATFPShooterCharacter_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_BP_SMC_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_BP_SMC_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UTFPShooterGameInstance_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_charSkeletalMesh,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_charMaterialInstance,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_BP_SMC,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UTFPShooterGameInstance_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UTFPShooterGameInstance>::IsAbstract,
@@ -101,7 +89,7 @@ void EmptyLinkFunctionForGeneratedCodeTFPShooterGameInstance() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UTFPShooterGameInstance, 856330576);
+	IMPLEMENT_CLASS(UTFPShooterGameInstance, 1164338178);
 	template<> TFPSHOOTER_API UClass* StaticClass<UTFPShooterGameInstance>()
 	{
 		return UTFPShooterGameInstance::StaticClass();
