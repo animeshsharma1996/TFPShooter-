@@ -17,8 +17,8 @@ void EmptyLinkFunctionForGeneratedCodeTFPShooterGameInstance() {}
 	TFPSHOOTER_API UClass* Z_Construct_UClass_UTFPShooterGameInstance();
 	ENGINE_API UClass* Z_Construct_UClass_UGameInstance();
 	UPackage* Z_Construct_UPackage__Script_TFPShooter();
-	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
-	TFPSHOOTER_API UClass* Z_Construct_UClass_ATFPShooterCharacter_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 // End Cross Module References
 	void UTFPShooterGameInstance::StaticRegisterNativesUTFPShooterGameInstance()
 	{
@@ -34,9 +34,37 @@ void EmptyLinkFunctionForGeneratedCodeTFPShooterGameInstance() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BP_SMC_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_faceMesh_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FClassPropertyParams NewProp_BP_SMC;
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_faceMesh;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_LegsMesh_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_LegsMesh;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HandsMesh_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_HandsMesh;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ChestMesh_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ChestMesh;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_eyebrowMesh_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_eyebrowMesh;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_eyesMesh_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_eyesMesh;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_hairMesh_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_hairMesh;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_beardMesh_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_beardMesh;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -53,14 +81,78 @@ void EmptyLinkFunctionForGeneratedCodeTFPShooterGameInstance() {}
 	};
 #endif
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_BP_SMC_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_faceMesh_MetaData[] = {
 		{ "Category", "TFPShooterGameInstance" },
+		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "TFPShooterGameInstance.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_BP_SMC = { "BP_SMC", nullptr, (EPropertyFlags)0x0014000000000005, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, BP_SMC), Z_Construct_UClass_ATFPShooterCharacter_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_BP_SMC_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_BP_SMC_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_faceMesh = { "faceMesh", nullptr, (EPropertyFlags)0x001000000008000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, faceMesh), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_faceMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_faceMesh_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_LegsMesh_MetaData[] = {
+		{ "Category", "TFPShooterGameInstance" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "TFPShooterGameInstance.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_LegsMesh = { "LegsMesh", nullptr, (EPropertyFlags)0x001000000008000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, LegsMesh), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_LegsMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_LegsMesh_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_HandsMesh_MetaData[] = {
+		{ "Category", "TFPShooterGameInstance" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "TFPShooterGameInstance.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_HandsMesh = { "HandsMesh", nullptr, (EPropertyFlags)0x001000000008000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, HandsMesh), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_HandsMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_HandsMesh_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_ChestMesh_MetaData[] = {
+		{ "Category", "TFPShooterGameInstance" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "TFPShooterGameInstance.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_ChestMesh = { "ChestMesh", nullptr, (EPropertyFlags)0x001000000008000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, ChestMesh), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_ChestMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_ChestMesh_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_eyebrowMesh_MetaData[] = {
+		{ "Category", "TFPShooterGameInstance" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "TFPShooterGameInstance.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_eyebrowMesh = { "eyebrowMesh", nullptr, (EPropertyFlags)0x001000000008000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, eyebrowMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_eyebrowMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_eyebrowMesh_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_eyesMesh_MetaData[] = {
+		{ "Category", "TFPShooterGameInstance" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "TFPShooterGameInstance.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_eyesMesh = { "eyesMesh", nullptr, (EPropertyFlags)0x001000000008000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, eyesMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_eyesMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_eyesMesh_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_hairMesh_MetaData[] = {
+		{ "Category", "TFPShooterGameInstance" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "TFPShooterGameInstance.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_hairMesh = { "hairMesh", nullptr, (EPropertyFlags)0x001000000008000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, hairMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_hairMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_hairMesh_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_beardMesh_MetaData[] = {
+		{ "Category", "TFPShooterGameInstance" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "TFPShooterGameInstance.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_beardMesh = { "beardMesh", nullptr, (EPropertyFlags)0x001000000008000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UTFPShooterGameInstance, beardMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_beardMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_beardMesh_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UTFPShooterGameInstance_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_BP_SMC,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_faceMesh,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_LegsMesh,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_HandsMesh,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_ChestMesh,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_eyebrowMesh,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_eyesMesh,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_hairMesh,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTFPShooterGameInstance_Statics::NewProp_beardMesh,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UTFPShooterGameInstance_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UTFPShooterGameInstance>::IsAbstract,
@@ -89,7 +181,7 @@ void EmptyLinkFunctionForGeneratedCodeTFPShooterGameInstance() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UTFPShooterGameInstance, 1164338178);
+	IMPLEMENT_CLASS(UTFPShooterGameInstance, 1787855564);
 	template<> TFPSHOOTER_API UClass* StaticClass<UTFPShooterGameInstance>()
 	{
 		return UTFPShooterGameInstance::StaticClass();

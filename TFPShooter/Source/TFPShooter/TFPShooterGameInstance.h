@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
-#include "TFPShooterCharacter.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "TFPShooterGameInstance.generated.h"
 
 /**
@@ -18,5 +18,20 @@ class TFPSHOOTER_API UTFPShooterGameInstance : public UGameInstance
 public :
 	UTFPShooterGameInstance(); 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		TSubclassOf<class ATFPShooterCharacter> BP_SMC;
+		USkeletalMeshComponent* faceMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		USkeletalMeshComponent* LegsMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		USkeletalMeshComponent* HandsMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		USkeletalMeshComponent* ChestMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UStaticMeshComponent* eyebrowMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UStaticMeshComponent* eyesMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UStaticMeshComponent* hairMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UStaticMeshComponent* beardMesh;
+		
 };
