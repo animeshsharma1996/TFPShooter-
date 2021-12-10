@@ -1,9 +1,0 @@
-E:\Projects\Unreal Engine\TPPFPPGame\TFPShooter-\TFPShooter\Intermediate\Build\Win64\UE4Editor\Development\TFPShooter\Definitions.TFPShooter.h
-E:\Unreal Engine\UE 4\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
-E:\Unreal Engine\UE 4\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
-E:\Projects\Unreal Engine\TPPFPPGame\TFPShooter-\TFPShooter\Source\TFPShooter/TFPShooterGameMode.h
-E:\Unreal Engine\UE 4\UE_4.26\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
-E:\Unreal Engine\UE 4\UE_4.26\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
-E:\Unreal Engine\UE 4\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
-E:\Unreal Engine\UE 4\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
-E:\Projects\Unreal Engine\TPPFPPGame\TFPShooter-\TFPShooter\Intermediate\Build\Win64\UE4Editor\Inc\TFPShooter\TFPShooterGameMode.generated.h
