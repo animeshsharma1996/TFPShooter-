@@ -97,3 +97,5 @@ TFPShooter/Saved/Logs/
 *.ini
 
 TFPShooter/Intermediate/Config/CoalescedSourceConfigs/
+
+*.log
