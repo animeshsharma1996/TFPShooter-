@@ -8,11 +8,10 @@ ATFPShooterGameMode::ATFPShooterGameMode()
 {
 	// set default pawn class to our Blueprinted character
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/StylizedModularChar/Blueprints/BP_StylizedModularCharacter"));
-	DefaultPawnClass = NULL;
 
-	/*if (PlayerPawnBPClass.Class != NULL)
+	if (PlayerPawnBPClass.Class != NULL)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
-	}*/
+	}
 }
 
