@@ -72,36 +72,9 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
-TFPShooter/Saved/Config/Windows/EditorPerProjectUserSettings.ini
 
-TFPShooter/Saved/Logs/TFPShooter.log
+TFPShooter/Saved/*
 
-TFPShooter/Saved/Autosaves/PackageRestoreData.json
+TFPShooter/Binaries/*
 
-TFPShooter/Saved/AutoScreenshot.png
-
-TFPShooter/Saved/Logs/TFPShooter-backup-2021.05.31-02.42.28.log
-
-TFPShooter/Intermediate/CachedAssetRegistry.bin
-
-TFPShooter/Saved/Config/CrashReportClient/UE4CC-Windows-86D8852D455FE076B3F544826EA8F4E2/CrashReportClient.ini
-
-TFPShooter/Saved/Config/CrashReportClient/UE4CC-Windows-AB73309E4A247F857301C8A29FA1169F/
-
-TFPShooter/Saved/Logs/
-
-TFPShooter/Intermediate/Config/CoalescedSourceConfigs/
-
-*.log
-
-TFPShooter/Saved/Config/CrashReportClient/UE4CC-Windows-DAD883D547175DCB16EB7BAC99D8DF65/CrashReportClient.ini
-
-TFPShooter/Binaries/Win64/
-
-TFPShooter/Intermediate/Build/Win64/
-
-TFPShooter/Saved/Crashes/UE4CC-Windows-415BA10540C3953F109F2DB6609A2158_0000/
-
-TFPShooter/Saved/Crashes/UE4CC-Windows-FD9BC0AC4EA4CB4D1FBECF888811A6F0_0000/
-
-TFPShooter/Saved/Crashes/UE4CC-Windows-97B6EDF34CCB6938B050D5811E960E75_0000/CrashReportClient.ini
+TFPShooter/Intermediate/*
