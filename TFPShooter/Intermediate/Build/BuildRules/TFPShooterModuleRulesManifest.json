@@ -1,8 +1,0 @@
-{
-	"SourceFiles": [
-		"E:\\Projects\\Unreal Engine\\TPPFPPGame\\TFPShooter-\\TFPShooter\\Source\\TFPShooter\\TFPShooter.Build.cs",
-		"E:\\Projects\\Unreal Engine\\TPPFPPGame\\TFPShooter-\\TFPShooter\\Source\\TFPShooter.Target.cs",
-		"E:\\Projects\\Unreal Engine\\TPPFPPGame\\TFPShooter-\\TFPShooter\\Source\\TFPShooterEditor.Target.cs"
-	],
-	"EngineVersion": "4.26.2"
-}
