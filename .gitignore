@@ -73,8 +73,8 @@ Plugins/*/Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 
-TFPShooter/Saved/*
+TFPShooter/Saved/
 
-TFPShooter/Binaries/*
+TFPShooter/Binaries/
 
-TFPShooter/Intermediate/*
+TFPShooter/Intermediate/
