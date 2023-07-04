@@ -1,5 +1,3 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 #include "TFPShooterCharacter.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
@@ -8,51 +6,37 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
-
-//////////////////////////////////////////////////////////////////////////
-// ATFPShooterCharacter
+#include "SaveGame/TFPShooterSaveGame.h"
+#include <Kismet/GameplayStatics.h>
 
 ATFPShooterCharacter::ATFPShooterCharacter()
 {
-	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
-	// set our turn rates for input
-	BaseTurnRate = 45.f;
-	BaseLookUpRate = 45.f;
+	baseTurnRate = 45.f;
+	baseLookUpRate = 45.f;
 
-	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
 
-	// Configure character movement
-	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // ...at this rotation rate
+	GetCharacterMovement()->bOrientRotationToMovement = true; 	
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); 
 	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
 
-	// Create a camera boom (pulls in towards the player if there is a collision)
-	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->SetupAttachment(RootComponent);
-	CameraBoom->TargetArmLength = 300.0f; // The camera follows at this distance behind the character	
-	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
+	cameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
+	cameraBoom->SetupAttachment(RootComponent);
+	cameraBoom->TargetArmLength = 300.0f; 
+	cameraBoom->bUsePawnControlRotation = true; 
 
-	// Create a follow camera
-	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
-	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
-	FollowCamera->bUsePawnControlRotation = true; // Camera does not rotate relative to arm
-
-	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
-	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+	followCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
+	followCamera->SetupAttachment(cameraBoom, USpringArmComponent::SocketName); 
+	followCamera->bUsePawnControlRotation = true; 
 }
-
-//////////////////////////////////////////////////////////////////////////
-// Input
 
 void ATFPShooterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
-	// Set up gameplay key bindings
 	check(PlayerInputComponent);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
@@ -60,51 +44,70 @@ void ATFPShooterCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 	PlayerInputComponent->BindAxis("MoveForward", this, &ATFPShooterCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ATFPShooterCharacter::MoveRight);
 
-	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
-	// "turn" handles devices that provide an absolute delta, such as a mouse.
-	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("TurnRate", this, &ATFPShooterCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &ATFPShooterCharacter::LookUpAtRate);
-
-	// handle touch devices
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &ATFPShooterCharacter::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &ATFPShooterCharacter::TouchStopped);
-
 }
 
-void ATFPShooterCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
+void ATFPShooterCharacter::BeginPlay()
 {
-		Jump();
-}
+	Super::BeginPlay();
 
-void ATFPShooterCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
-{
-		StopJumping();
+	beardMesh = FindComponentByClass<UStaticMeshComponent>();
+	hairMesh = FindComponentByClass<UStaticMeshComponent>();
+	eyesMesh = FindComponentByClass<UStaticMeshComponent>();
+	eyebrowMesh = FindComponentByClass<UStaticMeshComponent>();
+	mesh = FindComponentByClass<USkeletalMeshComponent>();
+	chestMesh = FindComponentByClass<USkeletalMeshComponent>();
+	handsMesh = FindComponentByClass<USkeletalMeshComponent>();
+	legsMesh = FindComponentByClass<USkeletalMeshComponent>();
+
+	AttachBodyParts(chestMesh);
+	AttachBodyParts(handsMesh);
+	AttachBodyParts(legsMesh);
+
+	eyesMesh->AttachToComponent(mesh, FAttachmentTransformRules::KeepRelativeTransform, FName("headSocket"));
+	eyebrowMesh->AttachToComponent(mesh, FAttachmentTransformRules::KeepRelativeTransform, FName("headSocket"));
+	hairMesh->AttachToComponent(mesh, FAttachmentTransformRules::KeepRelativeTransform, FName("headSocket"));
+	beardMesh->AttachToComponent(mesh, FAttachmentTransformRules::KeepRelativeTransform, FName("headSocket"));
+
+	if (UGameplayStatics::DoesSaveGameExist("SavedCharacterMesh", 0))
+	{
+		UTFPShooterSaveGame* saveGame = Cast<UTFPShooterSaveGame>(UGameplayStatics::LoadGameFromSlot("SavedCharacterMesh", 0));
+		if (!saveGame->LoadSkeletalMeshes().IsEmpty() && !saveGame->LoadStaticMeshes().IsEmpty())
+		{
+			SetAvatar
+			(
+				saveGame->LoadSkeletalMeshes()[0],
+				saveGame->LoadSkeletalMeshes()[1],
+				saveGame->LoadSkeletalMeshes()[2],
+				saveGame->LoadSkeletalMeshes()[3],
+				saveGame->LoadStaticMeshes()[0],
+				saveGame->LoadStaticMeshes()[1],
+				saveGame->LoadStaticMeshes()[2]
+			);
+		}
+	}
 }
 
 void ATFPShooterCharacter::TurnAtRate(float Rate)
 {
-	// calculate delta for this frame from the rate information
-	AddControllerYawInput(Rate * BaseTurnRate * GetWorld()->GetDeltaSeconds());
+	AddControllerYawInput(Rate * baseTurnRate * GetWorld()->GetDeltaSeconds());
 }
 
 void ATFPShooterCharacter::LookUpAtRate(float Rate)
 {
-	// calculate delta for this frame from the rate information
-	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
+	AddControllerPitchInput(Rate * baseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
 
 void ATFPShooterCharacter::MoveForward(float Value)
 {
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
-		// find out which way is forward
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
 	}
@@ -114,13 +117,295 @@ void ATFPShooterCharacter::MoveRight(float Value)
 {
 	if ( (Controller != nullptr) && (Value != 0.0f) )
 	{
-		// find out which way is right
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 	
-		// get right vector 
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
 }
+
+void ATFPShooterCharacter::ChestNext()
+{
+	if (isMale)
+	{
+		chestIndexMale = NextSkeletalMesh(chestIndexMale, chestArrayMale, chestMesh);
+	}
+	else
+	{
+		chestIndexFemale = NextSkeletalMesh(chestIndexFemale, chestArrayFemale, chestMesh);
+	}
+}
+
+void ATFPShooterCharacter::ChestPrevious()
+{
+	if (isMale)
+	{
+		chestIndexMale = PreviousSkeletalMesh(chestIndexMale, chestArrayMale, chestMesh);
+	}
+	else
+	{
+		chestIndexFemale = PreviousSkeletalMesh(chestIndexFemale, chestArrayFemale, chestMesh);
+	}
+}
+
+void ATFPShooterCharacter::LegsNext()
+{
+	if (isMale)
+	{
+		legsIndexMale = NextSkeletalMesh(legsIndexMale, legsArrayMale, legsMesh);
+	}
+	else
+	{
+		legsIndexFemale = NextSkeletalMesh(legsIndexFemale, legsArrayFemale, legsMesh);
+	}
+}
+
+void ATFPShooterCharacter::LegsPrevious()
+{
+	if (isMale)
+	{
+		legsIndexMale = PreviousSkeletalMesh(legsIndexMale, legsArrayMale, legsMesh);
+	}
+	else
+	{
+		legsIndexFemale = PreviousSkeletalMesh(legsIndexFemale, legsArrayFemale, legsMesh);
+	}
+}
+
+void ATFPShooterCharacter::HandsNext()
+{
+	if (isMale)
+	{
+		handsIndexMale = NextSkeletalMesh(handsIndexMale, handsArrayMale, handsMesh);
+	}
+	else
+	{
+		handsIndexFemale = NextSkeletalMesh(handsIndexFemale, handsArrayFemale, handsMesh);
+	}
+}
+
+void ATFPShooterCharacter::HandsPrevious()
+{
+	if (isMale)
+	{
+		handsIndexMale = PreviousSkeletalMesh(handsIndexMale, handsArrayMale, handsMesh);
+	}
+	else
+	{
+		handsIndexFemale = PreviousSkeletalMesh(handsIndexFemale, handsArrayFemale, handsMesh);
+	}
+}
+
+void ATFPShooterCharacter::BeardNext()
+{
+	if (isMale)
+	{
+		beardIndexMale = NextStaticMesh(beardIndexMale, beardArrayMale, beardMesh);
+	}
+}
+
+void ATFPShooterCharacter::BeardPrevious()
+{
+	if (isMale)
+	{
+		beardIndexMale = PreviousStaticMesh(beardIndexMale, beardArrayMale, beardMesh);
+	}
+}
+
+void ATFPShooterCharacter::HairNext()
+{
+	if (isMale)
+	{
+		hairIndexMale = NextStaticMesh(hairIndexMale, hairArrayMale, hairMesh);
+	}
+	else
+	{
+		hairIndexFemale = NextStaticMesh(hairIndexFemale, hairArrayFemale, hairMesh);
+	}
+}
+
+void ATFPShooterCharacter::HairPrevious()
+{
+	if (isMale)
+	{
+		hairIndexMale = PreviousStaticMesh(hairIndexMale, hairArrayMale, hairMesh);
+	}
+	else
+	{
+		hairIndexFemale = PreviousStaticMesh(hairIndexFemale, hairArrayFemale, hairMesh);
+	}
+}
+
+void ATFPShooterCharacter::EyebrowNext()
+{
+	if (isMale)
+	{
+		eyebrowIndexMale = NextStaticMesh(eyebrowIndexMale, eyebrowArrayMale, eyebrowMesh);
+	}
+	else
+	{
+		eyebrowIndexFemale = NextStaticMesh(eyebrowIndexFemale, eyebrowArrayFemale, eyebrowMesh);
+	}
+}
+
+void ATFPShooterCharacter::EyebrowPrevious()
+{
+	if (isMale)
+	{
+		eyebrowIndexMale = PreviousStaticMesh(eyebrowIndexMale, eyebrowArrayMale, eyebrowMesh);
+	}
+	else
+	{
+		eyebrowIndexFemale = PreviousStaticMesh(eyebrowIndexFemale, eyebrowArrayFemale, eyebrowMesh);
+	}
+}
+
+void ATFPShooterCharacter::FaceNext()
+{
+	if (isMale)
+	{
+		faceIndexMale = NextSkeletalMesh(faceIndexMale, faceArrayMale, mesh);
+	}
+	else
+	{
+		faceIndexFemale = NextSkeletalMesh(faceIndexFemale, faceArrayFemale, mesh);
+	}
+}
+
+void ATFPShooterCharacter::FacePrevious()
+{
+	if (isMale)
+	{
+		faceIndexMale = PreviousSkeletalMesh(faceIndexMale, faceArrayMale, mesh);
+	}
+	else
+	{
+		faceIndexFemale = PreviousSkeletalMesh(faceIndexFemale, faceArrayFemale, mesh);
+	}
+}
+
+void ATFPShooterCharacter::AttachBodyParts(USkeletalMeshComponent* bodyComponent)
+{
+	FVector location = mesh->GetComponentLocation();
+	FRotator rotation = mesh->GetComponentRotation();
+	bodyComponent->SetWorldLocationAndRotation(location, rotation, false);
+	bodyComponent->SetLeaderPoseComponent(mesh);
+}
+
+int ATFPShooterCharacter::NextSkeletalMesh
+(
+	int arrayIndex, TArray<USkeletalMesh*> skeletalMeshArray, USkeletalMeshComponent* skeletalMeshComponent
+)
+{
+	int localIndex = arrayIndex;
+	++localIndex;
+	if (localIndex >= skeletalMeshArray.Num())
+	{
+		localIndex = 0;
+	}
+	skeletalMeshComponent->SetSkinnedAssetAndUpdate(skeletalMeshArray[localIndex], true);
+
+	return localIndex;
+}
+
+int ATFPShooterCharacter::PreviousSkeletalMesh
+(
+	int arrayIndex, TArray<USkeletalMesh*> skeletalMeshArray, USkeletalMeshComponent* skeletalMeshComponent
+)
+{
+	int localIndex = arrayIndex;
+	--localIndex;
+	if (localIndex < 0)
+	{
+		localIndex = skeletalMeshArray.Num() - 1;
+	}
+	skeletalMeshComponent->SetSkinnedAssetAndUpdate(skeletalMeshArray[localIndex], true);
+
+	return localIndex;
+}
+
+int ATFPShooterCharacter::NextStaticMesh
+(
+	int arrayIndex, TArray<UStaticMesh*> staticMeshArray, UStaticMeshComponent* staticMeshComponent
+)
+{
+	int localIndex = arrayIndex;
+	++localIndex;
+	if (localIndex >= staticMeshArray.Num())
+	{
+		localIndex = 0;
+	}
+	staticMeshComponent->SetStaticMesh(staticMeshArray[localIndex]);
+
+	return localIndex;
+}
+
+int ATFPShooterCharacter::PreviousStaticMesh
+(
+	int arrayIndex, TArray<UStaticMesh*> skeletalMeshArray, UStaticMeshComponent* skeletalMeshComponent
+)
+{
+	int localIndex = arrayIndex;
+	--localIndex;
+	if (localIndex < 0)
+	{
+		localIndex = skeletalMeshArray.Num() - 1;
+	}
+	skeletalMeshComponent->SetStaticMesh(skeletalMeshArray[localIndex]);
+
+	return localIndex;
+}
+
+void ATFPShooterCharacter::SwitchGender()
+{
+	if (isMale)
+	{
+		isMale = false;
+		chestMesh->SetSkinnedAssetAndUpdate(chestArrayFemale[chestIndexFemale], true);
+		mesh->SetSkinnedAssetAndUpdate(faceArrayFemale[faceIndexFemale], true);
+		legsMesh->SetSkinnedAssetAndUpdate(legsArrayFemale[legsIndexFemale], true);
+		handsMesh->SetSkinnedAssetAndUpdate(handsArrayFemale[handsIndexFemale], true);
+		hairMesh->SetStaticMesh(hairArrayFemale[hairIndexFemale]);
+		eyesMesh->SetStaticMesh(eyesArrayFemale[eyesIndexFemale]);
+		beardMesh->SetStaticMesh(nullptr);
+	}
+	else
+	{
+		isMale = true;
+		chestMesh->SetSkinnedAssetAndUpdate(chestArrayMale[chestIndexMale], true);
+		mesh->SetSkinnedAssetAndUpdate(faceArrayMale[faceIndexMale], true);
+		legsMesh->SetSkinnedAssetAndUpdate(legsArrayMale[legsIndexMale], true);
+		handsMesh->SetSkinnedAssetAndUpdate(handsArrayMale[handsIndexMale], true);
+		hairMesh->SetStaticMesh(hairArrayMale[hairIndexMale]);
+		eyesMesh->SetStaticMesh(eyesArrayMale[eyesIndexMale]);
+		beardMesh->SetStaticMesh(beardArrayMale[beardIndexMale]);
+	}
+}
+
+void ATFPShooterCharacter::SetAvatar
+(
+	USkeletalMesh* face,
+	USkeletalMesh* legs,
+	USkeletalMesh* hands,
+	USkeletalMesh* chest,
+	UStaticMesh* eyebrow,
+	UStaticMesh* hair,
+	UStaticMesh* beard
+)
+{
+	mesh->SetSkinnedAssetAndUpdate(face, true);
+	legsMesh->SetSkinnedAssetAndUpdate(legs, true);
+	handsMesh->SetSkinnedAssetAndUpdate(hands, true);
+	chestMesh->SetSkinnedAssetAndUpdate(chest, true);
+	eyebrowMesh->SetStaticMesh(eyebrow);
+	hairMesh->SetStaticMesh(hair);
+	beardMesh->SetStaticMesh(beard);
+}
+
+void ATFPShooterCharacter::GetAvatar()
+{
+	
+}
+
+
