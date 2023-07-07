@@ -21,34 +21,36 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return cameraBoom; }
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return followCamera; }
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void ChestNext();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void ChestPrevious();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void LegsNext();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void LegsPrevious();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void HandsNext();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void HandsPrevious();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void BeardNext();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void BeardPrevious();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void HairNext();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void HairPrevious();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void EyebrowNext();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void EyebrowPrevious();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void FaceNext();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void FacePrevious();
+	UFUNCTION(BlueprintCallable)
+		void SwitchGender();
 
 protected:
 	UFUNCTION()
@@ -73,8 +75,6 @@ protected:
 		(
 			int arrayIndex, TArray<UStaticMesh*> staticMeshArray, UStaticMeshComponent* staticMeshComponent
 		);
-	UFUNCTION()
-		void SwitchGender();
 	UFUNCTION()
 		void SetAvatar
 		(
@@ -109,8 +109,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Body Parts")
 		TArray<class UStaticMesh*> hairArrayMale;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Body Parts")
-		TArray<class UStaticMesh*> eyesArrayMale;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Body Parts")
 		TArray<class UStaticMesh*> eyebrowArrayMale;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Body Parts")
@@ -124,8 +122,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Body Parts")
 		TArray<class UStaticMesh*> hairArrayFemale;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Body Parts")
-		TArray<class UStaticMesh*> eyesArrayFemale;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Body Parts")
 		TArray<class UStaticMesh*> eyebrowArrayFemale;
 
 		int faceIndexMale = 0;
@@ -134,7 +130,6 @@ protected:
 		int legsIndexMale = 0;
 		int beardIndexMale = 0;
 		int hairIndexMale = 0;
-		int eyesIndexMale = 0;
 		int eyebrowIndexMale = 0;
 
 		int faceIndexFemale = 0;
@@ -142,23 +137,23 @@ protected:
 		int handsIndexFemale = 0;
 		int legsIndexFemale = 0;
 		int hairIndexFemale = 0;
-		int eyesIndexFemale = 0;
 		int eyebrowIndexFemale = 0;
 
 		bool isMale = true;
-		class UStaticMeshComponent* beardMesh;
-		class UStaticMeshComponent* hairMesh;
-		class UStaticMeshComponent* eyesMesh;
-		class UStaticMeshComponent* eyebrowMesh;
-		class USkeletalMeshComponent* mesh;
-		class USkeletalMeshComponent* chestMesh;
-		class USkeletalMeshComponent* handsMesh;
-		class USkeletalMeshComponent* legsMesh;
+
+		class USkeletalMeshComponent* mainMesh = nullptr;
+		class USkeletalMeshComponent* chestMesh = nullptr;
+		class USkeletalMeshComponent* handsMesh = nullptr;
+		class USkeletalMeshComponent* legsMesh = nullptr;
+		class UStaticMeshComponent* beardMesh = nullptr;
+		class UStaticMeshComponent* hairMesh = nullptr;
+		class UStaticMeshComponent* eyesMesh = nullptr;
+		class UStaticMeshComponent* eyebrowMesh = nullptr;
 
 private:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class USpringArmComponent* cameraBoom;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* followCamera;
 };
 
