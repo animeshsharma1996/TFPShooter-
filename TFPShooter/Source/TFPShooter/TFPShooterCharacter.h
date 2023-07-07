@@ -142,12 +142,19 @@ protected:
 		bool isMale = true;
 
 		class USkeletalMeshComponent* mainMesh = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		class USkeletalMeshComponent* chestMesh = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		class USkeletalMeshComponent* handsMesh = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		class USkeletalMeshComponent* legsMesh = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		class UStaticMeshComponent* beardMesh = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		class UStaticMeshComponent* hairMesh = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		class UStaticMeshComponent* eyesMesh = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		class UStaticMeshComponent* eyebrowMesh = nullptr;
 
 private:

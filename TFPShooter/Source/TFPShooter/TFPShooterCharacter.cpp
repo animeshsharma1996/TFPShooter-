@@ -22,7 +22,7 @@ ATFPShooterCharacter::ATFPShooterCharacter()
 
 	GetCharacterMovement()->bOrientRotationToMovement = true; 	
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); 
-	GetCharacterMovement()->JumpZVelocity = 600.f;
+	GetCharacterMovement()->JumpZVelocity = 300.f;
 	GetCharacterMovement()->AirControl = 0.2f;
 
 	cameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
