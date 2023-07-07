@@ -6,7 +6,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "SaveGame/TFPShooterSaveGame.h"
+#include "../SaveGame/TFPShooterSaveGame.h"
 #include <Kismet/GameplayStatics.h>
 
 ATFPShooterCharacter::ATFPShooterCharacter()
@@ -81,12 +81,7 @@ void ATFPShooterCharacter::BeginPlay()
 	AttachBodyParts(handsMesh);
 	AttachBodyParts(legsMesh);
 
-	//eyesMesh->AttachToComponent(mainMesh, FAttachmentTransformRules::KeepRelativeTransform, FName("headSocket"));
-	//eyebrowMesh->AttachToComponent(mainMesh, FAttachmentTransformRules::KeepRelativeTransform, FName("headSocket"));
-	//hairMesh->AttachToComponent(mainMesh, FAttachmentTransformRules::KeepRelativeTransform, FName("headSocket"));
-	//beardMesh->AttachToComponent(mainMesh, FAttachmentTransformRules::KeepRelativeTransform, FName("headSocket"));
-
-	if (UGameplayStatics::DoesSaveGameExist("SavedCharacterMesh", 0))
+	/*if (UGameplayStatics::DoesSaveGameExist("SavedCharacterMesh", 0))
 	{
 		UTFPShooterSaveGame* saveGame = Cast<UTFPShooterSaveGame>(UGameplayStatics::LoadGameFromSlot("SavedCharacterMesh", 0));
 		if (!saveGame->LoadSkeletalMeshes().IsEmpty() && !saveGame->LoadStaticMeshes().IsEmpty())
@@ -102,7 +97,7 @@ void ATFPShooterCharacter::BeginPlay()
 				saveGame->LoadStaticMeshes()[2]
 			);
 		}
-	}
+	}*/
 }
 
 void ATFPShooterCharacter::AttachBodyParts(USkeletalMeshComponent* bodyComponent)
