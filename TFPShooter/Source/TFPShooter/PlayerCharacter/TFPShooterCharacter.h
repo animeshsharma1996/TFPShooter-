@@ -2,7 +2,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Chaos/Pair.h"
 #include "TFPShooterCharacter.generated.h"
+
+USTRUCT() struct FMeshPair
+{
+	GENERATED_BODY()
+
+	TArray<USkeletalMesh*> skeletalMeshes;
+	TArray<UStaticMesh*> staticMeshes;
+};
 
 UCLASS(config=Game)
 class ATFPShooterCharacter : public ACharacter
@@ -51,6 +60,8 @@ public:
 		void FacePrevious();
 	UFUNCTION(BlueprintCallable)
 		void SwitchGender();
+	UFUNCTION()
+		FMeshPair GetAvatar();
 
 protected:
 	UFUNCTION()
@@ -86,8 +97,6 @@ protected:
 			UStaticMesh* hair,
 			UStaticMesh* beard
 		);
-	UFUNCTION()
-		void GetAvatar();
 
 		void MoveForward(float Value);
 		void MoveRight(float Value);

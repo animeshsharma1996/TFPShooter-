@@ -17,6 +17,8 @@ bool UBodyPickWidget::Initialize()
 	handsLButton->OnClicked.AddDynamic(this, &UBodyPickWidget::OnHandsLButtonClicked);
     handsRButton->OnClicked.AddDynamic(this, &UBodyPickWidget::OnHandsRButtonClicked);
 	faceButton->OnClicked.AddDynamic(this, &UBodyPickWidget::OnFaceButtonClicked);
+	genderButton->OnClicked.AddDynamic(this, &UBodyPickWidget::OnGenderButtonClicked);
+	confirmButton->OnClicked.AddDynamic(this, &UBodyPickWidget::OnConfirmButtonClicked);
 
 	return false;
 }
@@ -43,7 +45,9 @@ void UBodyPickWidget::OnGenderButtonClicked()
 
 void UBodyPickWidget::OnConfirmButtonClicked()
 {
+	FMeshPair meshPair = pCharacter->GetAvatar();
 	saveGameInstance = Cast<UTFPShooterSaveGame>(UGameplayStatics::CreateSaveGameObject(tfpShooterSaveGame));
+	saveGameInstance->SaveCharacterMeshes(meshPair.skeletalMeshes, meshPair.staticMeshes);
 	UGameplayStatics::SaveGameToSlot(saveGameInstance, "SavedCharacterMesh", 0);
 	UGameplayStatics::OpenLevel(GetWorld(), "Stylized_Egypt_Demo");
 	UWidgetBlueprintLibrary::SetInputMode_GameOnly(UGameplayStatics::GetPlayerController(GetWorld(), 0), false);

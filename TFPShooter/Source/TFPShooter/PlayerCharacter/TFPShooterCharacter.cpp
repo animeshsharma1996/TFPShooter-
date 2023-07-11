@@ -81,7 +81,7 @@ void ATFPShooterCharacter::BeginPlay()
 	AttachBodyParts(handsMesh);
 	AttachBodyParts(legsMesh);
 
-	/*if (UGameplayStatics::DoesSaveGameExist("SavedCharacterMesh", 0))
+	if (UGameplayStatics::DoesSaveGameExist("SavedCharacterMesh", 0))
 	{
 		UTFPShooterSaveGame* saveGame = Cast<UTFPShooterSaveGame>(UGameplayStatics::LoadGameFromSlot("SavedCharacterMesh", 0));
 		if (!saveGame->LoadSkeletalMeshes().IsEmpty() && !saveGame->LoadStaticMeshes().IsEmpty())
@@ -97,7 +97,7 @@ void ATFPShooterCharacter::BeginPlay()
 				saveGame->LoadStaticMeshes()[2]
 			);
 		}
-	}*/
+	}
 }
 
 void ATFPShooterCharacter::AttachBodyParts(USkeletalMeshComponent* bodyComponent)
@@ -411,9 +411,25 @@ void ATFPShooterCharacter::SetAvatar
 	beardMesh->SetStaticMesh(beard);
 }
 
-void ATFPShooterCharacter::GetAvatar()
+FMeshPair ATFPShooterCharacter::GetAvatar()
 {
+	TArray<USkeletalMesh*> skeletalMeshArray;
+	TArray<UStaticMesh*> staticMeshArray;
+
+	skeletalMeshArray.Add(mainMesh->GetSkeletalMeshAsset());
+	skeletalMeshArray.Add(legsMesh->GetSkeletalMeshAsset());
+	skeletalMeshArray.Add(handsMesh->GetSkeletalMeshAsset());
+	skeletalMeshArray.Add(chestMesh->GetSkeletalMeshAsset());
+
+	staticMeshArray.Add(eyebrowMesh->GetStaticMesh());
+	staticMeshArray.Add(hairMesh->GetStaticMesh());
+	staticMeshArray.Add(beardMesh->GetStaticMesh());
 	
+	FMeshPair meshPair;
+	meshPair.skeletalMeshes = skeletalMeshArray;
+	meshPair.staticMeshes = staticMeshArray;
+
+	return meshPair;
 }
 
 
