@@ -12,7 +12,7 @@ class TFPSHOOTER_API UBodyPickWidget : public UUserWidget
 	GENERATED_BODY()
 		virtual bool Initialize() override;
 
-protected:
+protected :
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		TSubclassOf<UTFPShooterSaveGame> tfpShooterSaveGame;
 	UPROPERTY(meta = (BindWidget))
@@ -36,7 +36,7 @@ protected:
 	UPROPERTY(meta = (BindWidget))
 		class UTextBlock* genderButtonText;
 
-private:
+private :
 	UFUNCTION()
 		void OnChestLButtonClicked() { pCharacter->ChestNext(); }
 	UFUNCTION()

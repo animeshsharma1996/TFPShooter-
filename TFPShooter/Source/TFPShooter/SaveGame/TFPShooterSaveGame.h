@@ -9,7 +9,7 @@ class TFPSHOOTER_API UTFPShooterSaveGame : public USaveGame
 {
 	GENERATED_BODY()
 	
-public:
+public :
 	UFUNCTION()
 		void SaveCharacterMeshes(TArray<USkeletalMesh*> skeletalMeshes, TArray<UStaticMesh*> staticMeshes)
 		{
