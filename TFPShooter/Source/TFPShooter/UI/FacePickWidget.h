@@ -5,11 +5,17 @@
 #include "../PlayerCharacter/TFPShooterCharacter.h"
 #include "FacePickWidget.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDelegateSwitchFaceCam);
+
 UCLASS()
 class TFPSHOOTER_API UFacePickWidget : public UUserWidget
 {
 	GENERATED_BODY()
 		virtual bool Initialize() override;
+
+public :
+	UPROPERTY()
+		FDelegateSwitchFaceCam delegateSwitchCamera;
 
 protected :
 	UPROPERTY(meta = (BindWidget))

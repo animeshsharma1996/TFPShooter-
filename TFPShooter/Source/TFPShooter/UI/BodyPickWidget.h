@@ -6,11 +6,17 @@
 #include "../SaveGame/TFPShooterSaveGame.h"
 #include "BodyPickWidget.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDelegateSwitchBodyCam);
+
 UCLASS()
 class TFPSHOOTER_API UBodyPickWidget : public UUserWidget
 {
 	GENERATED_BODY()
 		virtual bool Initialize() override;
+
+public :
+	UPROPERTY()
+		FDelegateSwitchBodyCam delegateSwitchCamera;
 
 protected :
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)

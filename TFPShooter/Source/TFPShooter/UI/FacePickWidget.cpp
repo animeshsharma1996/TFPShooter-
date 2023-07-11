@@ -23,5 +23,5 @@ bool UFacePickWidget::Initialize()
 
 void UFacePickWidget::OnBodyButtonClicked()
 {
-
+	delegateSwitchCamera.Broadcast();
 }

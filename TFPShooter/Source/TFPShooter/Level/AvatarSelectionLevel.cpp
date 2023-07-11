@@ -17,6 +17,9 @@ void AAvatarSelectionLevel::BeginPlay()
 	bodyPickUserWidget->AddToViewport();
 	facePickUserWidget = CreateWidget<UUserWidget>(GetWorld(), facePickWidget);
 	facePickWidgetInstance = Cast<UFacePickWidget>(facePickUserWidget);
+
+	bodyPickWidgetInstance->delegateSwitchCamera.AddDynamic(this, &AAvatarSelectionLevel::SwitchCamera);
+	facePickWidgetInstance->delegateSwitchCamera.AddDynamic(this, &AAvatarSelectionLevel::SwitchCamera);
 }
 
 void AAvatarSelectionLevel::SwitchCamera()
@@ -26,13 +29,13 @@ void AAvatarSelectionLevel::SwitchCamera()
 		playerController->SetViewTargetWithBlend(bodyCamera, cameraBlendingTime);
 		isFaceCamOpen = false;
 		bodyPickUserWidget->AddToViewport();
-		facePickUserWidget->RemoveFromViewport();
+		facePickUserWidget->RemoveFromParent();
 	}
 	else
 	{
 		playerController->SetViewTargetWithBlend(faceCamera, cameraBlendingTime);
 		isFaceCamOpen = true;
-		bodyPickUserWidget->RemoveFromViewport();
+		bodyPickUserWidget->RemoveFromParent();
 		facePickUserWidget->AddToViewport();
 	}
 }

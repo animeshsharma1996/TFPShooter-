@@ -25,7 +25,7 @@ bool UBodyPickWidget::Initialize()
 
 void UBodyPickWidget::OnFaceButtonClicked()
 {
-
+	delegateSwitchCamera.Broadcast();
 }
 
 void UBodyPickWidget::OnGenderButtonClicked()
