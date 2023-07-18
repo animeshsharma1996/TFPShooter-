@@ -23,7 +23,6 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 		float baseTurnRate;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 		float baseLookUpRate;
 
@@ -171,5 +170,7 @@ private:
 		class USpringArmComponent* cameraBoom;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* followCamera;
-};
+
+		APlayerController* playerController = nullptr;
+};	
 

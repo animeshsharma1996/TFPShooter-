@@ -34,6 +34,8 @@ ATFPShooterCharacter::ATFPShooterCharacter()
 	followCamera->SetupAttachment(cameraBoom, USpringArmComponent::SocketName); 
 	followCamera->bUsePawnControlRotation = true; 
 
+	playerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+
 	mainMesh = GetMesh();
 	chestMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("ChestMesh"));
 	chestMesh->SetupAttachment(mainMesh, NAME_None);
@@ -66,7 +68,6 @@ void ATFPShooterCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ATFPShooterCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ATFPShooterCharacter::MoveRight);
-
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("TurnRate", this, &ATFPShooterCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);

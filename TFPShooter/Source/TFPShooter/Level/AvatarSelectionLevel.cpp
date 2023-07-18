@@ -1,10 +1,12 @@
 #include "AvatarSelectionLevel.h"
+#include <Kismet/GameplayStatics.h>
 
 void AAvatarSelectionLevel::BeginPlay()
 {
 	Super::BeginPlay();
 
 	playerController = Cast<APlayerController>(GetWorld()->GetFirstPlayerController());
+	pCharacter = Cast<ATFPShooterCharacter>(UGameplayStatics::GetActorOfClass(GetWorld(), ATFPShooterCharacter::StaticClass()));
 
 	if (playerController)
 	{
@@ -40,3 +42,16 @@ void AAvatarSelectionLevel::SwitchCamera()
 	}
 }
 
+void AAvatarSelectionLevel::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	if (playerController->IsInputKeyDown(EKeys::LeftMouseButton))
+	{ 
+		float mouseX = 0;
+		float mouseY = 0;
+		playerController->GetInputMouseDelta(mouseX, mouseY);
+		FRotator rotator = FRotator(0, -mouseX*5.0f, 0);
+		pCharacter->AddActorWorldRotation(rotator);
+	}
+}

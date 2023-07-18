@@ -4,6 +4,7 @@
 #include "Engine/LevelScriptActor.h"
 #include "../UI/BodyPickWidget.h"
 #include "../UI/FacePickWidget.h"
+#include "../PlayerCharacter/TFPShooterCharacter.h"
 #include "AvatarSelectionLevel.generated.h"
 
 UCLASS()
@@ -17,6 +18,7 @@ public :
 
 protected :
 		virtual void BeginPlay() override;
+		virtual void Tick(float DeltaSeconds) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		TSubclassOf<UBodyPickWidget> bodyPickWidget;
@@ -28,11 +30,12 @@ protected :
 		AActor* faceCamera;
 
 private :
-	UUserWidget* bodyPickUserWidget;
-	UUserWidget* facePickUserWidget;
-	UBodyPickWidget* bodyPickWidgetInstance;
-	UFacePickWidget* facePickWidgetInstance;
-	APlayerController* playerController;
-	float cameraBlendingTime = 0.5f;
-	bool isFaceCamOpen = false;
+		UUserWidget* bodyPickUserWidget;
+		UUserWidget* facePickUserWidget;
+		UBodyPickWidget* bodyPickWidgetInstance;
+		UFacePickWidget* facePickWidgetInstance;
+		APlayerController* playerController;
+		ATFPShooterCharacter* pCharacter;
+		float cameraBlendingTime = 0.5f;
+		bool isFaceCamOpen = false;
 };
