@@ -122,7 +122,7 @@ void ATFPShooterCharacter::LookUpAtRate(float Rate)
 
 void ATFPShooterCharacter::MoveForward(float Value)
 {
-	movementVector.X = Value;
+	movementVector.Y = Value;
 
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
@@ -137,7 +137,7 @@ void ATFPShooterCharacter::MoveForward(float Value)
 
 void ATFPShooterCharacter::MoveRight(float Value)
 {
-	movementVector.Y = Value;
+	movementVector.X = Value;
 
 	if ( (Controller != nullptr) && (Value != 0.0f) )
 	{
