@@ -59,6 +59,9 @@ public:
 		void FacePrevious();
 	UFUNCTION(BlueprintCallable)
 		void SwitchGender();
+	UFUNCTION(BlueprintCallable)
+		FVector2D GetMovementVector() { return movementVector; }
+
 	UFUNCTION()
 		FMeshPair GetAvatar();
 
@@ -172,5 +175,6 @@ private:
 		class UCameraComponent* followCamera;
 
 		APlayerController* playerController = nullptr;
+		FVector2D movementVector = FVector2D(0, 0);
 };	
 
