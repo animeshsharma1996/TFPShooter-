@@ -5,7 +5,7 @@ void AAvatarSelectionLevel::BeginPlay()
 {
 	Super::BeginPlay();
 
-	playerController = Cast<APlayerController>(GetWorld()->GetFirstPlayerController());
+	playerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	pCharacter = Cast<ATFPShooterCharacter>(UGameplayStatics::GetActorOfClass(GetWorld(), ATFPShooterCharacter::StaticClass()));
 
 	if (playerController)
