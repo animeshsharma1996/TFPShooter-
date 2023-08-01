@@ -175,6 +175,7 @@ private:
 		class UCameraComponent* followCamera;
 
 		APlayerController* playerController = nullptr;
+	UPROPERTY()
 		FVector2D movementVector = FVector2D(0, 0);
 };	
 

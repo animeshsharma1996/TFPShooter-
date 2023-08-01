@@ -7,6 +7,8 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "../SaveGame/TFPShooterSaveGame.h"
+#include "Net/UnrealNetwork.h"
+#include "Engine/Engine.h"
 #include <Kismet/GameplayStatics.h>
 
 ATFPShooterCharacter::ATFPShooterCharacter()
@@ -148,6 +150,8 @@ void ATFPShooterCharacter::MoveRight(float Value)
 		AddMovementInput(Direction, Value);
 	}
 }
+
+
 
 void ATFPShooterCharacter::ChestNext()
 {
