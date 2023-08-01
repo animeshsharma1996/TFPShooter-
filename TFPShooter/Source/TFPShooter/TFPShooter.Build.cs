@@ -8,9 +8,9 @@ public class TFPShooter : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        PrivatePCHHeaderFile = "TFPShooter.h";
-        MinFilesUsingPrecompiledHeaderOverride = 1;
-        bUseUnity = false;
+        //PrivatePCHHeaderFile = "TFPShooter.h";
+        //MinFilesUsingPrecompiledHeaderOverride = 1;
+        //bUseUnity = false;
 
         PublicDependencyModuleNames.AddRange(new string[] 
 		{

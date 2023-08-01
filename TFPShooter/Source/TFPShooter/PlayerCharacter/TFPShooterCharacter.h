@@ -20,6 +20,7 @@ class ATFPShooterCharacter : public ACharacter
 
 public:
 	ATFPShooterCharacter();
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 		float baseTurnRate;
@@ -61,7 +62,6 @@ public:
 		void SwitchGender();
 	UFUNCTION(BlueprintCallable)
 		FVector2D GetMovementVector() { return movementVector; }
-
 	UFUNCTION()
 		FMeshPair GetAvatar();
 
@@ -153,6 +153,7 @@ protected:
 		bool isMale = true;
 
 		class USkeletalMeshComponent* mainMesh = nullptr;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		class USkeletalMeshComponent* chestMesh = nullptr;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -175,7 +176,7 @@ private:
 		class UCameraComponent* followCamera;
 
 		APlayerController* playerController = nullptr;
-	UPROPERTY()
+	UPROPERTY(Replicated)
 		FVector2D movementVector = FVector2D(0, 0);
 };	
 

@@ -61,6 +61,13 @@ ATFPShooterCharacter::ATFPShooterCharacter()
 	beardMesh->SetupAttachment(mainMesh, FName("headSocket"));
 }
 
+void ATFPShooterCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(ATFPShooterCharacter, movementVector);
+}
+
 void ATFPShooterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	check(PlayerInputComponent);
