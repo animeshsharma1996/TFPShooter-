@@ -1,14 +1,15 @@
 #include "TFPShooterCharacter.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "../SaveGame/TFPShooterSaveGame.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
 #include "Net/UnrealNetwork.h"
 #include "Engine/Engine.h"
+#include "../SaveGame/TFPShooterSaveGame.h"
 #include <Kismet/GameplayStatics.h>
 
 ATFPShooterCharacter::ATFPShooterCharacter()
@@ -64,23 +65,24 @@ ATFPShooterCharacter::ATFPShooterCharacter()
 void ATFPShooterCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-
-	DOREPLIFETIME(ATFPShooterCharacter, movementVector);
 }
 
 void ATFPShooterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	check(PlayerInputComponent);
 
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	if (UEnhancedInputComponent* playerEnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		playerEnhancedInputComponent->BindAction(jumpIA, ETriggerEvent::Triggered, this, &ACharacter::Jump);
+		playerEnhancedInputComponent->BindAction(jumpIA, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
 
-	PlayerInputComponent->BindAxis("MoveForward", this, &ATFPShooterCharacter::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &ATFPShooterCharacter::MoveRight);
-	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
-	PlayerInputComponent->BindAxis("TurnRate", this, &ATFPShooterCharacter::TurnAtRate);
-	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("LookUpRate", this, &ATFPShooterCharacter::LookUpAtRate);
+		playerEnhancedInputComponent->BindAction(moveForwardIA, ETriggerEvent::Triggered, this, &ATFPShooterCharacter::MoveForward);
+		playerEnhancedInputComponent->BindAction(moveRightIA, ETriggerEvent::Triggered, this, &ATFPShooterCharacter::MoveRight);
+		playerEnhancedInputComponent->BindAction(turnIA, ETriggerEvent::Triggered, this, &ATFPShooterCharacter::Turn);
+		playerEnhancedInputComponent->BindAction(turnRateIA, ETriggerEvent::Triggered, this, &ATFPShooterCharacter::TurnAtRate);
+		playerEnhancedInputComponent->BindAction(lookUpIA, ETriggerEvent::Triggered, this, &ATFPShooterCharacter::LookUp);
+		playerEnhancedInputComponent->BindAction(lookUpRateIA, ETriggerEvent::Triggered, this, &ATFPShooterCharacter::LookUpAtRate);
+	}
 }
 
 void ATFPShooterCharacter::BeginPlay()
@@ -108,6 +110,14 @@ void ATFPShooterCharacter::BeginPlay()
 			);
 		}
 	}
+
+	if (playerController)
+	{
+		if (auto subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(playerController->GetLocalPlayer()))
+		{
+			subsystem->AddMappingContext(mappingContext, 0);
+		}
+	}
 }
 
 void ATFPShooterCharacter::AttachBodyParts(USkeletalMeshComponent* bodyComponent)
@@ -119,46 +129,45 @@ void ATFPShooterCharacter::AttachBodyParts(USkeletalMeshComponent* bodyComponent
 }
 
 
-void ATFPShooterCharacter::TurnAtRate(float Rate)
+void ATFPShooterCharacter::TurnAtRate(const FInputActionInstance& actionInstance)
 {
-	AddControllerYawInput(Rate * baseTurnRate * GetWorld()->GetDeltaSeconds());
+	float rate = actionInstance.GetValue().Get<float>();
+	AddControllerYawInput(rate * baseTurnRate * GetWorld()->GetDeltaSeconds());
 }
 
-void ATFPShooterCharacter::LookUpAtRate(float Rate)
+void ATFPShooterCharacter::LookUpAtRate(const FInputActionInstance& actionInstance)
 {
-	AddControllerPitchInput(Rate * baseLookUpRate * GetWorld()->GetDeltaSeconds());
+	float rate = actionInstance.GetValue().Get<float>();
+	AddControllerPitchInput(rate * baseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
 
-void ATFPShooterCharacter::MoveForward(float Value)
+void ATFPShooterCharacter::MoveForward(const FInputActionInstance& actionInstance)
 {
-	movementVector.Y = Value;
+	float value = actionInstance.GetValue().Get<float>();
 
-	if ((Controller != nullptr) && (Value != 0.0f))
+	if ((Controller != nullptr) && (value != 0.0f))
 	{
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		AddMovementInput(Direction, Value);
+		AddMovementInput(Direction, value);
 	}
 }
 
-void ATFPShooterCharacter::MoveRight(float Value)
+void ATFPShooterCharacter::MoveRight(const FInputActionInstance& actionInstance)
 {
-	movementVector.X = Value;
+	float value = actionInstance.GetValue().Get<float>();
 
-	if ( (Controller != nullptr) && (Value != 0.0f) )
+	if ( (Controller != nullptr) && (value != 0.0f) )
 	{
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		AddMovementInput(Direction, Value);
+		AddMovementInput(Direction, value);
 	}
 }
-
-
 
 void ATFPShooterCharacter::ChestNext()
 {

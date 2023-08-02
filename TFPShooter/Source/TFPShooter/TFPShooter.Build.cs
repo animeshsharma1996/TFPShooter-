@@ -1,5 +1,3 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 using UnrealBuildTool;
 
 public class TFPShooter : ModuleRules
@@ -17,7 +15,8 @@ public class TFPShooter : ModuleRules
 			"Core", 
 			"CoreUObject", 
 			"Engine", 
-			"InputCore", 
+			"InputCore",
+			"EnhancedInput",
 			"HeadMountedDisplay",
             "OnlineSubsystem",
             "OnlineSubsystemUtils",

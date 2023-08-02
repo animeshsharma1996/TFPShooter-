@@ -3,6 +3,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Chaos/Pair.h"
+#include "InputAction.h"
+#include "InputActionValue.h"
 #include "TFPShooterCharacter.generated.h"
 
 USTRUCT() struct FMeshPair
@@ -60,8 +62,6 @@ public:
 		void FacePrevious();
 	UFUNCTION(BlueprintCallable)
 		void SwitchGender();
-	UFUNCTION(BlueprintCallable)
-		FVector2D GetMovementVector() { return movementVector; }
 	UFUNCTION()
 		FMeshPair GetAvatar();
 
@@ -100,12 +100,31 @@ protected:
 			UStaticMesh* beard
 		);
 
-		void MoveForward(float Value);
-		void MoveRight(float Value);
-		void TurnAtRate(float Rate);
-		void LookUpAtRate(float Rate);
+		void MoveForward(const FInputActionInstance& actionInstance);
+		void MoveRight(const FInputActionInstance& actionInstance);
+		void Turn(const FInputActionInstance& actionInstance) { AddControllerYawInput(actionInstance.GetValue().Get<float>()); }
+		void TurnAtRate(const FInputActionInstance& actionInstance);
+		void LookUp(const FInputActionInstance& actionInstance) { AddControllerPitchInput(actionInstance.GetValue().Get<float>()); }
+		void LookUpAtRate(const FInputActionInstance& actionInstance);
 		virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 		virtual void BeginPlay() override;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
+		class UInputMappingContext* mappingContext = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
+		class UInputAction* jumpIA = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
+		class UInputAction* moveForwardIA = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
+		class UInputAction* moveRightIA = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
+		class UInputAction* turnIA = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
+		class UInputAction* turnRateIA = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
+		class UInputAction* lookUpIA = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
+		class UInputAction* lookUpRateIA = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Body Parts")
 		TArray<class USkeletalMesh*> faceArrayMale;
@@ -176,7 +195,5 @@ private:
 		class UCameraComponent* followCamera;
 
 		APlayerController* playerController = nullptr;
-	UPROPERTY(Replicated)
-		FVector2D movementVector = FVector2D(0, 0);
 };	
 
