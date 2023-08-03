@@ -16,8 +16,8 @@ ATFPShooterCharacter::ATFPShooterCharacter()
 {
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
-	baseTurnRate = 45.f;
-	baseLookUpRate = 45.f;
+	baseTurnAtRate = 45.f;
+	baseLookUpAtRate = 45.f;
 
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
@@ -132,13 +132,13 @@ void ATFPShooterCharacter::AttachBodyParts(USkeletalMeshComponent* bodyComponent
 void ATFPShooterCharacter::TurnAtRate(const FInputActionInstance& actionInstance)
 {
 	float rate = actionInstance.GetValue().Get<float>();
-	AddControllerYawInput(rate * baseTurnRate * GetWorld()->GetDeltaSeconds());
+	AddControllerYawInput(rate * baseTurnAtRate * GetWorld()->GetDeltaSeconds());
 }
 
 void ATFPShooterCharacter::LookUpAtRate(const FInputActionInstance& actionInstance)
 {
 	float rate = actionInstance.GetValue().Get<float>();
-	AddControllerPitchInput(rate * baseLookUpRate * GetWorld()->GetDeltaSeconds());
+	AddControllerPitchInput(rate * baseLookUpAtRate * GetWorld()->GetDeltaSeconds());
 }
 
 void ATFPShooterCharacter::MoveForward(const FInputActionInstance& actionInstance)

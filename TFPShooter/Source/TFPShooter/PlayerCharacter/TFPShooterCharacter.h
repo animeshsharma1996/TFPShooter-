@@ -24,9 +24,13 @@ public:
 	ATFPShooterCharacter();
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Camera)
+		float baseTurnAtRate;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Camera)
+		float baseLookUpAtRate;	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Camera)
 		float baseTurnRate;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Camera)
 		float baseLookUpRate;
 
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return cameraBoom; }
@@ -102,9 +106,9 @@ protected:
 
 		void MoveForward(const FInputActionInstance& actionInstance);
 		void MoveRight(const FInputActionInstance& actionInstance);
-		void Turn(const FInputActionInstance& actionInstance) { AddControllerYawInput(actionInstance.GetValue().Get<float>()); }
+		void Turn(const FInputActionInstance& actionInstance) { AddControllerYawInput(baseTurnRate * actionInstance.GetValue().Get<float>()); }
 		void TurnAtRate(const FInputActionInstance& actionInstance);
-		void LookUp(const FInputActionInstance& actionInstance) { AddControllerPitchInput(actionInstance.GetValue().Get<float>()); }
+		void LookUp(const FInputActionInstance& actionInstance) { AddControllerPitchInput(baseLookUpRate * actionInstance.GetValue().Get<float>()); }
 		void LookUpAtRate(const FInputActionInstance& actionInstance);
 		virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 		virtual void BeginPlay() override;
