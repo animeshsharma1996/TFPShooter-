@@ -11,11 +11,10 @@ class TFPSHOOTER_API AGun : public AWeapon
 
 protected :	
 	UPROPERTY(EditAnywhere, Category = "Weapon Stats")
-		float gunFireRate = 10000.0f;
+		float gunFireRate = 100.0f;
 	UFUNCTION()	
 		virtual void Initialiase() override;
 
 public:
-	UFUNCTION()
-		virtual void Fire() override;
+	virtual void Fire() override;
 };

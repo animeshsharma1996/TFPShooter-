@@ -8,4 +8,7 @@ UCLASS()
 class TFPSHOOTER_API AKnife : public AWeapon
 {
 	GENERATED_BODY()
+
+public:
+	virtual void Fire() override;
 };
