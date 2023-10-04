@@ -14,14 +14,15 @@ public:
 
 protected:
 	UPROPERTY(EditAnywhere, Category = "Weapon Stats")
+		UMaterial* weaponMaterial;
+	UPROPERTY(EditAnywhere, Category = "Weapon Stats")
 		float weaponDamage = 10.0f;
 	UPROPERTY(EditAnywhere, Category = "Weapon Stats")
 		float weaponRange = 10000.0f;
 
-	virtual void BeginPlay() override;
-	virtual void Fire();
+	virtual void Initialiase() {}
 
 public:	
-	virtual void Tick(float DeltaTime) override;
-
+	UFUNCTION()
+		virtual void Fire() {}
 };
