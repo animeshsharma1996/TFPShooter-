@@ -113,6 +113,7 @@ protected:
 		void SwitchPerspective(const FInputActionInstance& actionInstance);
 		virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 		virtual void BeginPlay() override;
+		virtual void Tick(float DeltaTime) override;
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
 		class UInputMappingContext* mappingContext = nullptr;
@@ -160,6 +161,9 @@ protected:
 		TArray<class UStaticMesh*> hairArrayFemale;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Body Parts")
 		TArray<class UStaticMesh*> eyebrowArrayFemale;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Inventory")
+        class AGun* gunClass = nullptr;
 
 		int faceIndexMale = 0;
 		int chestIndexMale = 0;

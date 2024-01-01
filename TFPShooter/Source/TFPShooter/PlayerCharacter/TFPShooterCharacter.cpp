@@ -125,6 +125,13 @@ void ATFPShooterCharacter::BeginPlay()
 	}
 }
 
+void ATFPShooterCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+
+}
+
 void ATFPShooterCharacter::AttachBodyParts(USkeletalMeshComponent* bodyComponent)
 {
 	FVector location = mainMesh->GetComponentLocation();
