@@ -37,6 +37,10 @@ ATFPShooterCharacter::ATFPShooterCharacter()
 	followCamera->SetupAttachment(cameraBoom, USpringArmComponent::SocketName); 
 	followCamera->bUsePawnControlRotation = true; 
 
+	fPCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FPCamera"));
+	fPCamera->SetupAttachment(GetMesh(), FName("headSocket"));
+	fPCamera->bUsePawnControlRotation = true;
+
 	playerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 
 	mainMesh = GetMesh();
@@ -82,6 +86,7 @@ void ATFPShooterCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 		playerEnhancedInputComponent->BindAction(turnRateIA, ETriggerEvent::Triggered, this, &ATFPShooterCharacter::TurnAtRate);
 		playerEnhancedInputComponent->BindAction(lookUpIA, ETriggerEvent::Triggered, this, &ATFPShooterCharacter::LookUp);
 		playerEnhancedInputComponent->BindAction(lookUpRateIA, ETriggerEvent::Triggered, this, &ATFPShooterCharacter::LookUpAtRate);
+		playerEnhancedInputComponent->BindAction(switchPerspectiveIA, ETriggerEvent::Started, this, &ATFPShooterCharacter::SwitchPerspective);
 	}
 }
 
@@ -139,6 +144,22 @@ void ATFPShooterCharacter::LookUpAtRate(const FInputActionInstance& actionInstan
 {
 	float rate = actionInstance.GetValue().Get<float>();
 	AddControllerPitchInput(rate * baseLookUpAtRate * GetWorld()->GetDeltaSeconds());
+}
+
+void ATFPShooterCharacter::SwitchPerspective(const FInputActionInstance& actionInstance)
+{
+	if (isFirstPerson)
+	{
+		isFirstPerson = false;
+		followCamera->SetActive(true);
+		fPCamera->SetActive(false);
+	}
+	else
+	{
+		isFirstPerson = true;
+		followCamera->SetActive(false);
+		fPCamera->SetActive(true);
+	}
 }
 
 void ATFPShooterCharacter::MoveForward(const FInputActionInstance& actionInstance)

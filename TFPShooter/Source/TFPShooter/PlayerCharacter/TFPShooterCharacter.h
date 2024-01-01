@@ -110,6 +110,7 @@ protected:
 		void TurnAtRate(const FInputActionInstance& actionInstance);
 		void LookUp(const FInputActionInstance& actionInstance) { AddControllerPitchInput(baseLookUpRate * actionInstance.GetValue().Get<float>()); }
 		void LookUpAtRate(const FInputActionInstance& actionInstance);
+		void SwitchPerspective(const FInputActionInstance& actionInstance);
 		virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 		virtual void BeginPlay() override;
 
@@ -129,6 +130,8 @@ protected:
 		class UInputAction* lookUpIA = nullptr;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
 		class UInputAction* lookUpRateIA = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
+		class UInputAction* switchPerspectiveIA = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Body Parts")
 		TArray<class USkeletalMesh*> faceArrayMale;
@@ -196,8 +199,11 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class USpringArmComponent* cameraBoom;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
-		class UCameraComponent* followCamera;
+		class UCameraComponent* followCamera;	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
+		class UCameraComponent* fPCamera;
 
 		APlayerController* playerController = nullptr;
+		bool isFirstPerson = false;
 };	
 
