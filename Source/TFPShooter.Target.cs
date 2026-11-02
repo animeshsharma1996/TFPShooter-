@@ -8,7 +8,7 @@ public class TFPShooterTarget : TargetRules
 	public TFPShooterTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
+		DefaultBuildSettings = BuildSettingsVersion.V7;
 		ExtraModuleNames.Add("TFPShooter");
 	}
 }

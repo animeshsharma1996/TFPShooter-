@@ -8,7 +8,7 @@ public class TFPShooterEditorTarget : TargetRules
 	public TFPShooterEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
+		DefaultBuildSettings = BuildSettingsVersion.V7;
 		ExtraModuleNames.Add("TFPShooter");
 	}
 }
